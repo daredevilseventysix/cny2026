@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlotte's CNY Fortune</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background-color: #000;
+  }
+
+  /* Full-width scrollable image */
+  #bgImage {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Content container below the image */
+  .content {
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5); /* semi-transparent for readability */
+  }
+
+  h1 {
+    color: #ffd700;
+    font-size: 2em;
+    text-shadow: 0 0 8px #ff6600;
+    margin-top: 20px;
+  }
+
+  p {
+    font-size: 1.2em;
+    text-shadow: 0 0 5px #ff6600;
+  }
+
+  #qrCode {
+    max-width: 250px;
+    margin-top: 20px;
+    border: 5px solid #ffd700;
+    border-radius: 12px;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  button:hover:not(:disabled) {
+    transform: scale(1.1);
+  }
+
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .fortune {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3300;
+    min-height: 70px;
+    padding: 15px;
+    border: 3px dashed #ffd700;
+    border-radius: 12px;
+    background-color: rgba(255, 243, 230, 0.8);
+    box-shadow: 0 0 15px #ff9900;
+    display: none; /* hidden until button click */
+  }
+
+  .lucky-number {
+    display: inline-block;
+    font-size: 36px;
+    color: #ff0000;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ff9900, 0 0 15px #ffd700;
+    animation: glow 1s infinite alternate;
+    margin-top: 10px;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 8px #ff9900, 0 0 15px #ffd700; }
+    to { text-shadow: 0 0 15px #ffd700, 0 0 25px #ff6600; }
+  }
+
+  canvas {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: transparent;
+  }
+</style>
+</head>
+<body>
+
+<img id="bgImage" src="beforefortune.png" alt="Background Picture">
+
+<div class="content">
+  <h1>🧧 Charlotte's CNY Fortune 🧧</h1>
+  <p>Scan to give your angpow and receive a special fortune!</p>
+  <img id="qrCode" src="tng_qr.png" alt="Touch n Go QR Code">
+  <div>
+    <button id="fortuneButton" onclick="showFortune()">Reveal My Fortune 🎉</button>
+  </div>
+  <div class="fortune" id="fortune"></div>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<script>
+// Charlotte fortunes
+const fortunes = [
+"Charlotte wishes you a year full of laughter!",
+"Charlotte sends you health and happiness this year!",
+"Charlotte wishes you wealth and prosperity!",
+"Charlotte sends you a joyful surprise soon!",
+"Charlotte wishes your kindness be rewarded!",
+"Charlotte sends you great opportunities ahead!",
+"Charlotte wishes you courage and success!",
+"Charlotte sends you happiness all year long!",
+"Charlotte wishes you joy with family and friends!",
+"Charlotte sends you luck shining today!",
+"Charlotte wishes your dreams come closer than ever!",
+"Charlotte sends abundance into your life!",
+"Charlotte wishes your efforts be recognized!",
+"Charlotte sends a happy event around the corner!",
+"Charlotte wishes good fortune in unexpected ways!",
+"Charlotte sends you a smile to brighten your day!",
+"Charlotte wishes love and warmth fill your home!",
+"Charlotte sends inspiration to those around you!",
+"Charlotte wishes your creativity leads to success!",
+"Charlotte sends fortune following your hard work!",
+"Charlotte wishes joy multiplies in your life this year!",
+"Charlotte sends a pleasant surprise your way!",
+"Charlotte wishes you meet someone who changes your life!",
+"Charlotte sends peace and harmony to bless your days!",
+"Charlotte wishes new adventures bring you happiness!",
+"Charlotte sends you a path full of golden opportunities!",
+"Charlotte wishes laughter and fun fill your days!",
+"Charlotte sends unexpected gifts!",
+"Charlotte wishes joyful moments come often!",
+"Charlotte sends your efforts bearing fruit!",
+"Charlotte wishes happiness be just around the corner!",
+"Charlotte sends positivity to follow you everywhere!",
+"Charlotte wishes friendships grow stronger this year!",
+"Charlotte sends courage to face new challenges!",
+"Charlotte wishes you smile through every day!",
+"Charlotte sends opportunities that bring joy!",
+"Charlotte wishes your heart be light and happy!",
+"Charlotte sends warmth into your home!",
+"Charlotte wishes you achieve what you dreamed!",
+"Charlotte sends laughter with family and friends!",
+"Charlotte wishes wealth flows to you effortlessly!",
+"Charlotte sends joy in every small moment!",
+"Charlotte wishes your year be colorful and bright!",
+"Charlotte sends you surprises that warm your heart!",
+"Charlotte wishes your hard work pays off handsomely!",
+"Charlotte sends new connections that inspire you!",
+"Charlotte wishes your life be full of celebration!",
+"Charlotte sends love in unexpected ways!",
+"Charlotte wishes luck accompanies you every day!",
+"Charlotte sends peace to calm your mind!",
+"Charlotte wishes every meal be joyful!",
+"Charlotte sends energy and health your way!",
+"Charlotte wishes every morning starts bright!",
+"Charlotte sends fortune wrapped in happiness!",
+"Charlotte wishes you shine in everything you do!",
+"Charlotte sends laughter to fill your home!",
+"Charlotte wishes friends and family surround you!",
+"Charlotte sends happiness that multiplies!",
+"Charlotte wishes your year sparkle like gold!",
+"Charlotte sends moments to remember forever!",
+"Charlotte wishes kindness returns to you tenfold!",
+"Charlotte sends joy that fills your heart!",
+"Charlotte wishes wealth and fortune smile at you!",
+"Charlotte sends courage to follow your dreams!",
+"Charlotte wishes love and laughter never end!",
+"Charlotte sends moments of calm and peace!",
+"Charlotte wishes adventure and excitement find you!",
+"Charlotte sends rewards for your hard work!",
+"Charlotte wishes bright days and cozy nights!",
+"Charlotte sends inspiration for every project!",
+"Charlotte wishes surprises that delight!",
+"Charlotte sends fortune hidden in plain sight!",
+"Charlotte wishes your wishes come true easily!",
+"Charlotte sends joy like fireworks in the sky!",
+"Charlotte wishes you find beauty everywhere!",
+"Charlotte sends strength to overcome any obstacle!",
+"Charlotte wishes your heart be full of hope!",
+"Charlotte sends laughter that echoes for days!",
+"Charlotte wishes sweet moments with loved ones!",
+"Charlotte sends success knocking at your door!",
+"Charlotte wishes new paths lead to happiness!",
+"Charlotte sends energy for every challenge!",
+"Charlotte wishes every day better than the last!",
+"Charlotte sends fortune sparkling like stars!",
+"Charlotte wishes you treasure every smile!",
+"Charlotte sends blessings for health and wealth!",
+"Charlotte wishes joy in both small and big things!",
+"Charlotte sends warmth to those you care about!",
+"Charlotte wishes endless opportunities ahead!",
+"Charlotte sends love from Charlotte to you!",
+"Charlotte wishes your year be magical and bright!",
+"Charlotte sends happiness wrapped in red envelopes!",
+"Charlotte wishes your dreams are within reach!",
+"Charlotte sends smiles that light up your day!",
+"Charlotte wishes your kindness return multiplied!",
+"Charlotte sends fun and laughter without end!",
+"Charlotte wishes peace and calm fill your days!",
+"Charlotte sends surprises that make you cheer!",
+"Charlotte wishes golden opportunities come your way!",
+"Charlotte sends blessings for every step you take!",
+"Charlotte wishes your heart be full of cheer!",
+"Charlotte sends joy and fortune hand in hand!",
+"Charlotte wishes your year sparkle with happiness!",
+"Charlotte sends warmth and love everywhere you go!",
+"Charlotte wishes delightful moments around every corner!",
+"Charlotte sends abundance for you and yours!",
+"Charlotte wishes happiness to last the entire year!",
+"Charlotte sends bright days and cozy nights to you!"
+];
+
+
+function showFortune() {
+  const fortuneText = fortunes[Math.floor(Math.random() * fortunes.length)];
+  const luckyNumber = Math.floor(1000 + Math.random() * 9000);
+  const fortuneDiv = document.getElementById('fortune');
+  fortuneDiv.innerHTML = `${fortuneText} <br> 🍀 <span class="lucky-number">${luckyNumber}</span>`;
+  fortuneDiv.style.display = "block";
+
+  document.getElementById('fortuneButton').disabled = true;
+
+  document.getElementById('bgImage').src = "afterfortune.jpg";
+
+  launchFireworks();
+}
+
+// Fireworks function
+function launchFireworks() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const fireworks = [];
+  const particles = [];
+  const qr = document.getElementById('qrCode');
+  const safeZone = qr.getBoundingClientRect();
+
+  function random(min,max){return Math.random()*(max-min)+min;}
+
+  function Firework(){
+    this.x = random(50, canvas.width-50);
+    this.y = canvas.height;
+    this.targetY = random(safeZone.bottom+20, canvas.height*0.5);
+    const colors = ["#FF0000","#FFD700","#FF6600"];
+    this.color = colors[Math.floor(Math.random()*colors.length)];
+    this.speed = random(5,8);
+    this.exploded = false;
+  }
+
+  Firework.prototype.update=function(){
+    if(!this.exploded){
+      this.y -= this.speed;
+      if(this.y <= this.targetY){
+        this.exploded = true;
+        for(let i=0;i<30;i++){particles.push(new Particle(this.x,this.y,this.color));}
+      }
+    }
+  }
+
+  Firework.prototype.draw=function(){
+    if(!this.exploded){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,3,0,Math.PI*2);
+      ctx.fillStyle=this.color;
+      ctx.fill();
+    }
+  }
+
+  function Particle(x,y,color){
+    this.x=x; this.y=y; this.color=color;
+    this.radius=random(2,4);
+    this.angle=random(0,2*Math.PI);
+    this.speed=random(2,5);
+    this.alpha=1;
+    this.friction=0.95;
+  }
+
+  Particle.prototype.update=function(){
+    this.x+=Math.cos(this.angle)*this.speed;
+    this.y+=Math.sin(this.angle)*this.speed+0.5;
+    this.speed*=this.friction;
+    this.alpha-=0.02;
+  }
+
+  Particle.prototype.draw=function(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,165,0,${this.alpha})`;
+    ctx.fill();
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(fireworks.length<3 && Math.random()<0.05){fireworks.push(new Firework());}
+    fireworks.forEach((f,i)=>{f.update();f.draw(); if(f.exploded)fireworks.splice(i,1);});
+    particles.forEach((p,i)=>{p.update();p.draw(); if(p.alpha<=0)particles.splice(i,1);});
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+</script>
+
+</body>
+</html>
+
+
