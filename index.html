@@ -118,127 +118,136 @@ canvas {
 <canvas id="confetti-canvas"></canvas>
 
 <script>
-// Charlotte fortunes
+// Fire Horse Fortunes — Dog & Cat Edition
 const fortunes = [
-"Charlotte wishes you a year full of laughter!",
-"Charlotte sends you health and happiness this year!",
-"Charlotte wishes you wealth and prosperity!",
-"Charlotte sends you a joyful surprise soon!",
-"Charlotte wishes your kindness be rewarded!",
-"Charlotte sends you great opportunities ahead!",
-"Charlotte wishes you courage and success!",
-"Charlotte sends you happiness all year long!",
-"Charlotte wishes you joy with family and friends!",
-"Charlotte sends you luck shining today!",
-"Charlotte wishes your dreams come closer than ever!",
-"Charlotte sends abundance into your life!",
-"Charlotte wishes your efforts be recognized!",
-"Charlotte sends a happy event around the corner!",
-"Charlotte wishes good fortune in unexpected ways!",
-"Charlotte sends you a smile to brighten your day!",
-"Charlotte wishes love and warmth fill your home!",
-"Charlotte sends inspiration to those around you!",
-"Charlotte wishes your creativity leads to success!",
-"Charlotte sends fortune following your hard work!",
-"Charlotte wishes joy multiplies in your life this year!",
-"Charlotte sends a pleasant surprise your way!",
-"Charlotte wishes you meet someone who changes your life!",
-"Charlotte sends peace and harmony to bless your days!",
-"Charlotte wishes new adventures bring you happiness!",
-"Charlotte sends you a path full of golden opportunities!",
-"Charlotte wishes laughter and fun fill your days!",
-"Charlotte sends unexpected gifts!",
-"Charlotte wishes joyful moments come often!",
-"Charlotte sends your efforts bearing fruit!",
-"Charlotte wishes happiness be just around the corner!",
-"Charlotte sends positivity to follow you everywhere!",
-"Charlotte wishes friendships grow stronger this year!",
-"Charlotte sends courage to face new challenges!",
-"Charlotte wishes you smile through every day!",
-"Charlotte sends opportunities that bring joy!",
-"Charlotte wishes your heart be light and happy!",
-"Charlotte sends warmth into your home!",
-"Charlotte wishes you achieve what you dreamed!",
-"Charlotte sends laughter with family and friends!",
-"Charlotte wishes wealth flows to you effortlessly!",
-"Charlotte sends joy in every small moment!",
-"Charlotte wishes your year be colorful and bright!",
-"Charlotte sends you surprises that warm your heart!",
-"Charlotte wishes your hard work pays off handsomely!",
-"Charlotte sends new connections that inspire you!",
-"Charlotte wishes your life be full of celebration!",
-"Charlotte sends love in unexpected ways!",
-"Charlotte wishes luck accompanies you every day!",
-"Charlotte sends peace to calm your mind!",
-"Charlotte wishes every meal be joyful!",
-"Charlotte sends energy and health your way!",
-"Charlotte wishes every morning starts bright!",
-"Charlotte sends fortune wrapped in happiness!",
-"Charlotte wishes you shine in everything you do!",
-"Charlotte sends laughter to fill your home!",
-"Charlotte wishes friends and family surround you!",
-"Charlotte sends happiness that multiplies!",
-"Charlotte wishes your year sparkle like gold!",
-"Charlotte sends moments to remember forever!",
-"Charlotte wishes kindness returns to you tenfold!",
-"Charlotte sends joy that fills your heart!",
-"Charlotte wishes wealth and fortune smile at you!",
-"Charlotte sends courage to follow your dreams!",
-"Charlotte wishes love and laughter never end!",
-"Charlotte sends moments of calm and peace!",
-"Charlotte wishes adventure and excitement find you!",
-"Charlotte sends rewards for your hard work!",
-"Charlotte wishes bright days and cozy nights!",
-"Charlotte sends inspiration for every project!",
-"Charlotte wishes surprises that delight!",
-"Charlotte sends fortune hidden in plain sight!",
-"Charlotte wishes your wishes come true easily!",
-"Charlotte sends joy like fireworks in the sky!",
-"Charlotte wishes you find beauty everywhere!",
-"Charlotte sends strength to overcome any obstacle!",
-"Charlotte wishes your heart be full of hope!",
-"Charlotte sends laughter that echoes for days!",
-"Charlotte wishes sweet moments with loved ones!",
-"Charlotte sends success knocking at your door!",
-"Charlotte wishes new paths lead to happiness!",
-"Charlotte sends energy for every challenge!",
-"Charlotte wishes every day better than the last!",
-"Charlotte sends fortune sparkling like stars!",
-"Charlotte wishes you treasure every smile!",
-"Charlotte sends blessings for health and wealth!",
-"Charlotte wishes joy in both small and big things!",
-"Charlotte sends warmth to those you care about!",
-"Charlotte wishes endless opportunities ahead!",
-"Charlotte sends love from Charlotte to you!",
-"Charlotte wishes your year be magical and bright!",
-"Charlotte sends happiness wrapped in red envelopes!",
-"Charlotte wishes your dreams are within reach!",
-"Charlotte sends smiles that light up your day!",
-"Charlotte wishes your kindness return multiplied!",
-"Charlotte sends fun and laughter without end!",
-"Charlotte wishes peace and calm fill your days!",
-"Charlotte sends surprises that make you cheer!",
-"Charlotte wishes golden opportunities come your way!",
-"Charlotte sends blessings for every step you take!",
-"Charlotte wishes your heart be full of cheer!",
-"Charlotte sends joy and fortune hand in hand!",
-"Charlotte wishes your year sparkle with happiness!",
-"Charlotte sends warmth and love everywhere you go!",
-"Charlotte wishes delightful moments around every corner!",
-"Charlotte sends abundance for you and yours!",
-"Charlotte wishes happiness to last the entire year!",
-"Charlotte sends bright days and cozy nights to you!"
+  // 🐕 Dog POV
+  "I wag for a reason — this is not your waiting year.",
+  "Trust me, hooman. Move first. Treats follow.",
+  "I chased it. It ran. You’ll catch yours too.",
+  "Sniff the moment. Act now.",
+  "I don’t hesitate — neither should you this year.",
+  "The Fire Horse likes confidence. I like snacks. Same rule.",
+  "Stop sitting. Start running. Luck keeps up.",
+  "I see momentum. It smells good on you.",
+  "Bark once. The door opens.",
+  "This year responds to bold energy — like me at dinner time.",
+  "No permission needed. I never ask before zoomies.",
+  "The slow path? I dug it up and buried it.",
+  "One brave step. Tail up. Go.",
+  "You’re faster than last year — I can tell.",
+
+  "Chase it now. Thinking is for later.",
+  "Fire Horse year = zoomies year.",
+  "If it scares you a little, it’s probably right.",
+  "I approve this risky move.",
+  "Momentum loves confidence. I love walks.",
+  "Start strong. Nap later.",
+  "I don’t look back when I run — neither should you.",
+  "Your timing smells… perfect.",
+  "One decision. Big payoff.",
+  "I sense progress. Also chicken nearby.",
+  "This year rewards brave hoomans.",
+  "Don’t overthink. I never do.",
+  "Fire energy means GO, not maybe.",
+  "I barked. Things moved. You can too.",
+  "You’re meant to be seen this year — like me at the park.",
+
+  "Less explaining. More doing.",
+  "Confidence suits you. Like my red CNY pouch.",
+  "Run toward it. I’ll guard your luck.",
+  "If you hesitate, I’ll gently nudge you forward.",
+  "You’re aligned. I feel it in my paws.",
+  "One bold move changes the whole walk.",
+  "This year moves fast — keep up.",
+  "You’ll surprise them. I already know.",
+  "Fire Horse energy approves this choice.",
+  "Action clears confusion. Also squirrels.",
+  "Start now. The year is already running.",
+  "I see opportunity. I chase opportunity.",
+  "Don’t sit. Stay is cancelled.",
+  "You’ve waited long enough. Treat time.",
+  "Move with confidence — like I own the street.",
+  "This year likes leaders. You smell like one.",
+  "I ran ahead to check — you’re safe to go.",
+  "The path opens when you commit.",
+  "Momentum is your new luck charm.",
+  "Follow your instinct. Mine never fails.",
+  "Angpow received. Fortune activated. 🐾🧧",
+
+  // 🐱 Cat POV (20%)
+  "🐱 I stared at it until it happened. Try that.",
+  "🐱 If I jumped, I already calculated the landing.",
+  "🐱 Fire Horse year. I knock things off shelves on purpose.",
+  "🐱 Confidence is silent. Watch me walk away.",
+  "🐱 Move when you feel like it — but mean it.",
+  "🐱 I nap because I’ve already won.",
+  "🐱 Risk first. Groom later.",
+  "🐱 I chose this path. Naturally, it worked.",
+  "🐱 If it interests you, it’s meant for you.",
+  "🐱 I don’t chase luck. Luck follows me.",
+
+  // 🔥 New additions (Dog energy)
+  "I saw the opening. You should take it.",
+  "Bold moves get extra biscuits this year.",
+  "If it feels urgent, it probably is.",
+  "Run before doubt catches up.",
+  "I trust your instinct. That’s rare.",
+  "The year rewards motion, not waiting.",
+  "You moved — good. Everything else will adjust.",
+  "Courage smells better than fear.",
+  "I’m wagging. That’s your sign.",
+  "Do it messy. Do it now.",
+  "Speed beats perfection this year.",
+  "You’re already in motion. Don’t stop.",
+  "Luck responds to confidence, not questions.",
+  "I pulled the leash. Forward is the plan.",
+  "This choice has good energy all over it.",
+  "You won’t miss what you don’t hesitate for.",
+  "Run like someone’s watching — and impressed.",
+  "Fire Horse years reward the brave and loud.",
+  "Momentum is building. Don’t interrupt it.",
+  "I believe in this move. That’s saying something.",
+  "Once you start, everything chases you.",
+  "This isn’t reckless. It’s aligned.",
+  "Trust the jump. I always do.",
+  "You’re meant to lead this one.",
+  "Go now. The window is open."
+  
+  // 🌟 Special Animal Fortunes (Rare)
+const specialFortunes = [
+  "🦙 Alpaca says: Stay calm. Your softness is your superpower.",
+  "🐹 Hamster says: Small steps, big momentum. Keep going.",
+  "🦜 Parrot says: Speak up. Your voice opens doors this year.",
+  "🦦 Otter says: Joy attracts luck. Have fun with it.",
+  "🐟 Fish says: Go with the flow — abundance is surrounding you.",
+  "🐎 Horse says: Run boldly. This year was made for you."
 ];
+</script>
+
 
 function showFortune() {
-  const f = fortunes[Math.floor(Math.random()*fortunes.length)];
-  const num = Math.floor(1000 + Math.random()*9000);
+  // 🔝 Scroll back to top
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  let f;
+
+  // 10% chance for special animal fortune
+  if (Math.random() < 0.1) {
+    f = specialFortunes[Math.floor(Math.random() * specialFortunes.length)];
+  } else {
+    f = fortunes[Math.floor(Math.random() * fortunes.length)];
+  }
+
+  const num = Math.floor(1000 + Math.random() * 9000);
 
   const box = document.getElementById("fortune");
   box.innerHTML = `
     🧧 Charlotte's Fortune 🧧<br><br>
     ${f}
-    <span class="lucky-number">${num}</span>
+    <span class="lucky-number">🍀 ${num} 🍀</span>
   `;
   box.style.display = "block";
 
@@ -247,6 +256,8 @@ function showFortune() {
 
   launchFireworks();
 }
+
+
 
 /* Lighter fireworks */
 function launchFireworks() {
