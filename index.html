@@ -105,7 +105,7 @@ canvas {
 
 <div class="content">
   <h1>🧧 Charlotte's CNY Fortune 🧧</h1>
-  <p>Scan to give your angpow and receive a special fortune</p>
+  <p id="fortuneHint"></p>
 
   <img id="qrCode" src="tng_qr.png">
 
@@ -273,6 +273,21 @@ function launchFireworks() {
   }
   draw();
 }
+
+const hints = [
+  "Scan if you feel like it — Charlotte might have a fortune for you 🐾",
+  "No pressure. Scan if you want a fortune (Charlotte insists)",
+  "Scan for a fortune. Or don’t. Charlotte will still judge you lovingly.",
+  "Scan for a fortune. Snacks not required (but appreciated).",
+  "Scan for a fortune. Charlotte worked very hard on these.",
+  "Scan to see what Charlotte thinks of your year 👀🐕",
+  "Scan if you’d like a little CNY luck 🧧",
+  "A small scan for you, a big fortune from Charlotte 🐾",
+  "Scan for a festive fortune — just for fun!"
+];
+
+const hintElement = document.getElementById("fortuneHint");
+hintElement.textContent = hints[Math.floor(Math.random() * hints.length)];
 
 </script>
 </body>
