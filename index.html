@@ -199,14 +199,14 @@ const specialFortunes = [
 ];
 
 function playCNYSound() {
-  const sounds = [
-    document.getElementById("firecrackerSFX"),
-    document.getElementById("gongSFX")
-  ];
-  const sound = sounds[Math.floor(Math.random() * sounds.length)];
-  sound.currentTime = 0;
-  sound.play().catch(err => console.log("Audio play blocked:", err));
+  const firecracker = document.getElementById("firecrackerSFX");
+  const gong = document.getElementById("gongSFX");
+  
+  // 50% chance each
+  if (Math.random() < 0.5) firecracker.play().catch(err=>console.log(err));
+  if (Math.random() < 0.5) gong.play().catch(err=>console.log(err));
 }
+
 
 
 function showFortune() {
@@ -306,8 +306,9 @@ hintElement.textContent = hints[Math.floor(Math.random() * hints.length)];
 
 <!-- 🎵 CNY Sound Effects -->
 <audio id="firecrackerSFX" preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f5f8d7c2d3.mp3?filename=fireworks-pop-6309.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7a2a5c3b3b.mp3?filename=firecracker-6361.mp3" type="audio/mpeg">
 </audio>
+
 
 <audio id="gongSFX" preload="auto">
   <source src="https://www.orangefreesounds.com/wp-content/uploads/2015/09/Chinese-gong-sound.mp3" type="audio/mpeg">
