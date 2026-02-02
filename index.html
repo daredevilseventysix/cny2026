@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Charlotte's CNY Fortune</title>
 
+<body onclick="unlockAudio()">
+
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -197,6 +199,18 @@ const specialFortunes = [
   "🐟 Fish says: Go with the flow — abundance is surrounding you.",
   "🐎 Horse says: Run boldly. This year was made for you."
 ];
+
+function unlockAudio() {
+  document.getElementById("firecrackerSFX").play().then(a => {
+    document.getElementById("firecrackerSFX").pause();
+    document.getElementById("firecrackerSFX").currentTime = 0;
+  }).catch(()=>{});
+
+  document.getElementById("gongSFX").play().then(a => {
+    document.getElementById("gongSFX").pause();
+    document.getElementById("gongSFX").currentTime = 0;
+  }).catch(()=>{});
+}
 
 function playCNYSound() {
   const firecracker = document.getElementById("firecrackerSFX");
