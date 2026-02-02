@@ -99,7 +99,7 @@ canvas {
 </style>
 </head>
 
-<body onclick="unlockAudio()">
+<body>
 
 <img id="bgImage" src="beforefortune.png">
 
@@ -198,27 +198,12 @@ const specialFortunes = [
   "🐎 Horse says: Run boldly. This year was made for you."
 ];
 
-function unlockAudio() {
-  document.getElementById("firecrackerSFX").play().then(a => {
-    document.getElementById("firecrackerSFX").pause();
-    document.getElementById("firecrackerSFX").currentTime = 0;
-  }).catch(()=>{});
-
-  document.getElementById("gongSFX").play().then(a => {
-    document.getElementById("gongSFX").pause();
-    document.getElementById("gongSFX").currentTime = 0;
-  }).catch(()=>{});
-}
 
 function playCNYSound() {
-  const sounds = [
-    document.getElementById("firecrackerSFX"),
-    document.getElementById("gongSFX")
-  ];
-
-  const sound = sounds[Math.floor(Math.random() * sounds.length)];
-  sound.currentTime = 0;
-  sound.play().catch(err => console.log("Audio blocked:", err));
+  const gong = document.getElementById("gongSFX");
+  gong.volume = 0.9;      // important for Android
+  gong.currentTime = 0;
+  gong.play().catch(() => {});
 }
 
 
@@ -320,10 +305,6 @@ hintElement.textContent = hints[Math.floor(Math.random() * hints.length)];
 </script>
 
 <!-- 🎵 CNY Sound Effects -->
-<audio id="firecrackerSFX" preload="auto">
-  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_45d98d38c1.mp3" type="audio/mpeg">
-</audio>
-
 <audio id="gongSFX" preload="auto">
   <source src="https://www.orangefreesounds.com/wp-content/uploads/2015/09/Chinese-gong-sound.mp3" type="audio/mpeg">
 </audio>
