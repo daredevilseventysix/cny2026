@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Charlotte's CNY Fortune</title>
 
-<body onclick="unlockAudio()">
-
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -101,7 +99,7 @@ canvas {
 </style>
 </head>
 
-<body>
+<body onclick="unlockAudio()">
 
 <img id="bgImage" src="beforefortune.png">
 
@@ -213,13 +211,16 @@ function unlockAudio() {
 }
 
 function playCNYSound() {
-  const firecracker = document.getElementById("firecrackerSFX");
-  const gong = document.getElementById("gongSFX");
-  
-  // 50% chance each
-  if (Math.random() < 0.5) firecracker.play().catch(err=>console.log(err));
-  if (Math.random() < 0.5) gong.play().catch(err=>console.log(err));
+  const sounds = [
+    document.getElementById("firecrackerSFX"),
+    document.getElementById("gongSFX")
+  ];
+
+  const sound = sounds[Math.floor(Math.random() * sounds.length)];
+  sound.currentTime = 0;
+  sound.play().catch(err => console.log("Audio blocked:", err));
 }
+
 
 
 
