@@ -39,6 +39,16 @@
   z-index: 10;
 }
 
+/* Angpow Link Style */
+a {
+  color: gold;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
 .sparkle {
   position: absolute;
@@ -377,19 +387,25 @@ function launchFireworks() {
 }
 
 const hints = [
-  "Scan if you feel like it — Charlotte might have a fortune for you 🐾",
-  "No pressure. Scan if you want a fortune (Charlotte insists)",
-  "Scan for a fortune. Or don’t. Charlotte will still judge you lovingly.",
-  "Scan for a fortune. Snacks not required (but appreciated).",
-  "Scan for a fortune. Charlotte worked very hard on these.",
-  "Scan to see what Charlotte thinks of your year 👀🐕",
-  "Scan if you’d like a little CNY luck 🧧",
-  "A small scan for you, a big fortune from Charlotte 🐾",
-  "Scan for a festive fortune — just for fun!"
+  `Scan if you feel like it — Charlotte might have a fortune for you 🐾<br>
+   Or donate angpow here 👉 <a href="https://payment.tngdigital.com.my/sc/bDLookb79F" target="_blank">Send Angpow ❤️</a>`,
+
+  `No pressure. Scan if you want a fortune (Charlotte insists)<br>
+   Or donate angpow 👉 <a href="https://payment.tngdigital.com.my/sc/bDLookb79F" target="_blank">Send Angpow ❤️</a>`,
+
+  `Scan for a fortune. Or don’t. Charlotte will still judge you lovingly.<br>
+   Angpow option 👉 <a href="https://payment.tngdigital.com.my/sc/bDLookb79F" target="_blank">Send Angpow ❤️</a>`,
+
+  `Scan for a fortune. Snacks not required (but appreciated).<br>
+   Or angpow here 👉 <a href="https://payment.tngdigital.com.my/sc/bDLookb79F" target="_blank">Send Angpow ❤️</a>`,
+
+  `Scan if you’d like a little CNY luck 🧧<br>
+   Or tap here to send angpow 👉 <a href="https://payment.tngdigital.com.my/sc/bDLookb79F" target="_blank">Send Angpow ❤️</a>`
 ];
 
+
 const hintElement = document.getElementById("fortuneHint");
-hintElement.textContent = hints[Math.floor(Math.random() * hints.length)];
+hintElement.innerHTML = hints[Math.floor(Math.random() * hints.length)];
 
 </script>
 
